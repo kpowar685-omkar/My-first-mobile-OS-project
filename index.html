@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OG OS</title>
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: #030704;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+.home {
+  min-height: 100vh;
+  padding: 30px 22px;
+  background: radial-gradient(circle at top, #12351b, #030704 70%);
+}
+
+.logo {
+  color: #39ff14;
+  font-size: 36px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 25px;
+}
+
+.tagline {
+  text-align: center;
+  color: #a6ff99;
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+.clock {
+  text-align: center;
+  font-size: 56px;
+  margin-top: 65px;
+  color: #39ff14;
+}
+
+.date {
+  text-align: center;
+  color: #aaa;
+}
+
+.card {
+  margin-top: 35px;
+  padding: 20px;
+  border: 1px solid #39ff14;
+  border-radius: 18px;
+  background: #08130a;
+}
+
+button {
+  width: 100%;
+  padding: 16px;
+  margin-top: 14px;
+  border-radius: 12px;
+  border: 1px solid #39ff14;
+  background: #0c1c0e;
+  color: #39ff14;
+  font-size: 16px;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 45px;
+  color: #39ff14;
+  font-size: 12px;
+}
+</style>
+</head>
+<body>
+<div class="home">
+  <div class="logo">OG OS</div>
+  <div class="tagline">BIGGER DREAMS. BIGGER MOVES.</div>
+
+  <div class="clock" id="clock">00:00</div>
+  <div class="date" id="date"></div>
+
+  <div class="card">
+    <h3>WELCOME TO OG OS</h3>
+    <p>Your phone. Your vision. Your rules.</p>
+  </div>
+
+  <button onclick="alert('Welcome to OG OS!')">
+    🚀 START OG OS
+  </button>
+
+  <button onclick="alert('OG AI — Coming Soon!')">
+    🤖 OG AI
+  </button>
+
+  <button onclick="alert('Settings — Coming Soon!')">
+    ⚙️ SETTINGS
+  </button>
+
+  <div class="footer">OG OS • VERSION 1.0</div>
+</div>
+
+<script>
+function updateClock() {
+  const now = new Date();
+
+  document.getElementById("clock").textContent =
+    now.toLocaleTimeString("en-IN", {
+      hour: "2-digit",
+      minute: "2-digit"
+    });
+
+  document.getElementById("date").textContent =
+    now.toLocaleDateString("en-IN", {
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+      year: "numeric"
+    });
+}
+
+updateClock();
+setInterval(updateClock, 1000);
+</script>
+</body>
+</html>
