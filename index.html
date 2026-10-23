@@ -3,231 +3,198 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#030704">
-<title>OG OS V2.0</title>
+<meta name="theme-color" content="#080808">
+<title>OG OS V3</title>
 
 <style>
 *{box-sizing:border-box}
 body{
-  margin:0;background:#030704;color:white;
-  font-family:Arial,sans-serif;
+ margin:0;background:#080808;color:#fff;
+ font-family:Arial,sans-serif
 }
-:root{--green:#39ff14;--card:#091b10;--border:#287b29}
-.home{min-height:100vh;padding:24px 18px 35px;
-background:radial-gradient(circle at top,#10351b,#030704 65%)}
-.logo{text-align:center;color:var(--green);font-size:38px;font-weight:bold}
-.tag{text-align:center;color:#a6e8a1;letter-spacing:3px;font-size:11px;margin-top:8px}
-.clock{text-align:center;color:var(--green);font-size:48px;margin-top:55px}
+:root{--red:#ff2638;--card:#171719;--border:#343438}
+.home,.screen{min-height:100vh;padding:25px 18px 35px}
+.home{
+ background:radial-gradient(circle at top,#351015,#080808 65%)
+}
+.logo{text-align:center;color:var(--red);font-size:38px;font-weight:bold}
+.tag{text-align:center;color:#aaa;font-size:11px;letter-spacing:3px;margin-top:8px}
+.clock{text-align:center;color:var(--red);font-size:48px;margin-top:55px;font-weight:bold}
 .date{text-align:center;color:#aaa;margin:8px 0 38px}
-.card{background:var(--card);border:1px solid var(--border);
-border-radius:20px;padding:22px;margin-bottom:15px}
-h2{font-size:20px}
-button{
-width:100%;padding:17px;margin:7px 0;border-radius:14px;
-border:1px solid var(--green);background:#0a1b0d;
-color:var(--green);font-size:17px;cursor:pointer
+.card{
+ background:var(--card);border:1px solid var(--border);
+ border-radius:20px;padding:20px;margin-bottom:15px
 }
-button:active{background:#173d1a}
+h2{font-size:20px;margin-top:0}
+button{
+ width:100%;padding:15px;margin:6px 0;
+ border-radius:12px;border:1px solid var(--red);
+ background:#211012;color:#ff5260;font-size:16px
+}
+button:active{background:#4a151b}
 .small{font-size:13px;color:#aaa;line-height:1.6}
 input,textarea{
-width:100%;padding:14px;margin:8px 0;background:#07100a;
-color:white;border:1px solid var(--border);border-radius:10px
+ width:100%;padding:13px;margin:7px 0;
+ background:#090909;color:white;border:1px solid #444;
+ border-radius:10px;font-size:16px
 }
-.screen{display:none;min-height:100vh;padding:22px 18px 40px;
-background:radial-gradient(circle at top,#10351b,#030704 70%)}
+textarea{min-height:140px;resize:vertical}
+.screen{display:none;background:radial-gradient(circle at top,#351015,#080808 70%)}
 .back{width:auto;padding:10px 18px}
-.appgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.appgrid button{height:100px;font-size:16px}
-.status{display:flex;justify-content:space-between;color:#9ddd9b;font-size:13px}
+.appgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.appgrid button{height:95px;font-size:16px}
+.result{font-size:23px;color:var(--red);overflow-wrap:anywhere}
 </style>
 </head>
 
 <body>
 <section class="home" id="home">
-  <div class="status"><span>OG OS</span><span id="battery">Battery</span></div>
-  <div style="margin-top:35px" class="logo">OG OS</div>
-  <div class="tag">BIGGER DREAMS. BIGGER MOVES.</div>
+ <div class="logo">OG OS</div>
+ <div class="tag">GAMING EDITION • V3</div>
 
-  <div class="clock" id="clock">00:00</div>
-  <div class="date" id="date"></div>
+ <div class="clock" id="clock">00:00</div>
+ <div class="date" id="date">Loading...</div>
 
-  <div class="card">
-    <h2>WELCOME TO OG OS</h2>
-    <p>Your phone. Your vision. Your rules.</p>
-    <p class="small">Your personal mobile dashboard.</p>
-  </div>
+ <div class="card">
+  <h2>🔴 Welcome, OG</h2>
+  <p class="small">Your world. Your rules. Your system.</p>
+  <p class="small">Stay focused. Build your future.</p>
+ </div>
 
-  <button onclick="openScreen('apps')">🚀 START OG OS</button>
-  <button onclick="openScreen('ai')">🤖 OG AI ASSISTANT</button>
-  <button onclick="openScreen('settings')">⚙️ SETTINGS</button>
-  <button onclick="openScreen('security')">🔒 SECURITY CENTER</button>
-
-  <p class="small" style="text-align:center;margin-top:30px">
-    OG OS • VERSION 2.0
-  </p>
-</section>
-
-<section class="screen" id="apps">
-  <button class="back" onclick="goHome()">← Home</button>
-  <h1>📱 OG OS APPS</h1>
+ <div class="card">
+  <h2>⚡ Dashboard</h2>
   <div class="appgrid">
-    <button onclick="openScreen('ai')">🤖<br>OG AI</button>
-    <button onclick="openScreen('notes')">📝<br>Notes</button>
-    <button onclick="openScreen('calculator')">🧮<br>Calculator</button>
-    <button onclick="openScreen('settings')">⚙️<br>Settings</button>
-    <button onclick="openScreen('security')">🔒<br>Security</button>
-    <button onclick="openScreen('about')">ℹ️<br>About OS</button>
+   <button onclick="show('notes')">📝<br>Notes</button>
+   <button onclick="show('calc')">🧮<br>Calculator</button>
+   <button onclick="show('ai')">🤖<br>Demo AI</button>
+   <button onclick="show('settings')">⚙️<br>Settings</button>
   </div>
-  <p class="small">These are web-app features, not replacements for your phone's Android system apps.</p>
-</section>
+ </div>
 
-<section class="screen" id="ai">
-  <button class="back" onclick="goHome()">← Home</button>
-  <h1>🤖 OG AI</h1>
-  <div class="card">
-    <p id="reply">Hello! I am your OG OS assistant interface.</p>
-    <input id="question" placeholder="Type your question...">
-    <button onclick="askAI()">Ask Assistant</button>
-    <p class="small">This demo works offline using simple responses. A real AI requires a secure AI service connection.</p>
-  </div>
+ <div class="card">
+  <h2>🎯 Daily Mission</h2>
+  <p class="small">Learn one skill. Complete one task. Improve every day.</p>
+  <button onclick="mission()">Get Daily Mission</button>
+  <p id="missionText" class="small"></p>
+ </div>
+
+ <p class="small" style="text-align:center">OG OS V3 • Web Prototype</p>
 </section>
 
 <section class="screen" id="notes">
-  <button class="back" onclick="goHome()">← Home</button>
-  <h1>📝 OG Notes</h1>
-  <textarea id="note" rows="9" placeholder="Write your ideas here..."></textarea>
-  <button onclick="saveNote()">💾 Save Notes</button>
-  <p id="noteStatus" class="small"></p>
+ <button class="back" onclick="goHome()">← Home</button>
+ <h2>📝 OG Notes</h2>
+ <textarea id="note" placeholder="Write your ideas here..."></textarea>
+ <button onclick="saveNote()">Save Notes</button>
+ <p id="noteStatus" class="small"></p>
 </section>
 
-<section class="screen" id="calculator">
-  <button class="back" onclick="goHome()">← Home</button>
-  <h1>🧮 OG Calculator</h1>
-  <div class="card">
-    <input id="calcInput" type="text" inputmode="decimal" placeholder="Example: 25*(4+2)">
-    <button onclick="calculate()">Calculate</button>
-    <h2 id="calcResult">Result: —</h2>
-    <p class="small">Supports basic arithmetic: +, -, *, /, and parentheses.</p>
-  </div>
+<section class="screen" id="calc">
+ <button class="back" onclick="goHome()">← Home</button>
+ <h2>🧮 Calculator</h2>
+ <input id="num1" type="number" placeholder="First number">
+ <input id="op" placeholder="Operator: + - * /">
+ <input id="num2" type="number" placeholder="Second number">
+ <button onclick="calculate()">Calculate</button>
+ <p id="answer" class="result"></p>
+</section>
+
+<section class="screen" id="ai">
+ <button class="back" onclick="goHome()">← Home</button>
+ <h2>🤖 OG Demo AI</h2>
+ <p class="small">This is a simple offline demo, not a real AI service.</p>
+ <input id="question" placeholder="Type a question...">
+ <button onclick="askAI()">Ask Demo AI</button>
+ <div class="card"><p id="aiAnswer" class="small">Your demo response will appear here.</p></div>
 </section>
 
 <section class="screen" id="settings">
-  <button class="back" onclick="goHome()">← Home</button>
-  <h1>⚙️ SETTINGS</h1>
-  <div class="card">
-    <h3>Appearance</h3>
-    <button onclick="toggleTheme()">🌗 Toggle Green / Blue Theme</button>
-    <h3>Personalisation</h3>
-    <input id="username" placeholder="Your display name">
-    <button onclick="saveName()">Save Name</button>
-    <p id="nameStatus" class="small"></p>
-    <button onclick="resetSettings()">Reset Appearance</button>
-  </div>
-</section>
-
-<section class="screen" id="security">
-  <button class="back" onclick="goHome()">← Home</button>
-  <h1>🔒 SECURITY CENTER</h1>
-  <div class="card">
-    <h3>Privacy Checklist</h3>
-    <p>✓ Use a screen lock on your phone.</p>
-    <p>✓ Keep Android and browser updated.</p>
-    <p>✓ Never share passwords or verification codes.</p>
-    <p>✓ Review app permissions regularly.</p>
-    <p class="small">This page is an educational checklist. It does not scan, lock, or protect your device by itself.</p>
-  </div>
+ <button class="back" onclick="goHome()">← Home</button>
+ <h2>⚙️ Settings</h2>
+ <div class="card">
+  <p>Theme: Black + Red 🔴</p>
+  <p class="small">Version: OG OS V3</p>
+  <p class="small">Platform: Web prototype</p>
+ </div>
+ <button onclick="show('about')">About OG OS</button>
 </section>
 
 <section class="screen" id="about">
-  <button class="back" onclick="goHome()">← Home</button>
-  <h1>ℹ️ ABOUT OG OS</h1>
-  <div class="card">
-    <h2>OG OS V2.0</h2>
-    <p>A personal mobile dashboard project.</p>
-    <p class="small">Built with HTML, CSS and JavaScript.</p>
-  </div>
+ <button class="back" onclick="goHome()">← Home</button>
+ <h2>About OG OS</h2>
+ <div class="card">
+  <p>OG OS V3 — Gaming Edition</p>
+  <p class="small">A personal web project made to learn coding.</p>
+  <p class="small">It does not replace Android or provide device-level security.</p>
+ </div>
 </section>
 
 <script>
 function updateClock(){
-  const now=new Date();
-  document.getElementById('clock').textContent=
-    now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
-  document.getElementById('date').textContent=
-    now.toLocaleDateString(undefined,{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+ const now=new Date();
+ document.getElementById('clock').textContent=
+ now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+ document.getElementById('date').textContent=
+ now.toLocaleDateString([], {weekday:'long',day:'numeric',month:'long',year:'numeric'});
 }
 updateClock();
 setInterval(updateClock,1000);
 
-function openScreen(id){
-  document.getElementById('home').style.display='none';
-  document.querySelectorAll('.screen').forEach(s=>s.style.display='none');
-  document.getElementById(id).style.display='block';
+function show(id){
+ document.getElementById('home').style.display='none';
+ document.querySelectorAll('.screen').forEach(s=>s.style.display='none');
+ document.getElementById(id).style.display='block';
 }
 function goHome(){
-  document.querySelectorAll('.screen').forEach(s=>s.style.display='none');
-  document.getElementById('home').style.display='block';
+ document.querySelectorAll('.screen').forEach(s=>s.style.display='none');
+ document.getElementById('home').style.display='block';
 }
-
-function askAI(){
-  const q=document.getElementById('question').value.trim().toLowerCase();
-  let answer;
-  if(!q) answer='Please type a question first.';
-  else if(q.includes('hello')||q.includes('hi')) answer='Hello! Welcome to OG OS.';
-  else if(q.includes('time')) answer='The current time is '+new Date().toLocaleTimeString()+'.';
-  else if(q.includes('date')) answer='Today is '+new Date().toLocaleDateString()+'.';
-  else if(q.includes('your name')) answer='I am the OG OS demo assistant.';
-  else answer='I am the offline demo assistant. A connected AI service is needed to answer general questions.';
-  document.getElementById('reply').textContent=answer;
-}
-
-const noteBox=document.getElementById('note');
-try{noteBox.value=localStorage.getItem('ogos_note')||'';}catch(e){}
 function saveNote(){
-  try{
-    localStorage.setItem('ogos_note',noteBox.value);
-    document.getElementById('noteStatus').textContent='Notes saved on this browser.';
-  }catch(e){
-    document.getElementById('noteStatus').textContent='Storage unavailable. Please copy your notes.';
-  }
-}
-
-function calculate(){
-  const raw=document.getElementById('calcInput').value.trim();
-  const result=document.getElementById('calcResult');
-  if(!raw){result.textContent='Enter a calculation first.';return;}
-  if(!/^[0-9+\-*/().\s]+$/.test(raw)){
-    result.textContent='Please use numbers and arithmetic symbols only.';return;
-  }
-  try{
-    const value=Function('"use strict";return ('+raw+')')();
-    result.textContent=Number.isFinite(value)?'Result: '+value:'Invalid calculation';
-  }catch(e){result.textContent='Invalid calculation';}
-}
-
-function toggleTheme(){
-  const root=document.documentElement;
-  const blue=getComputedStyle(root).getPropertyValue('--green').trim()==='#39ff14';
-  root.style.setProperty('--green',blue?'#42a5ff':'#39ff14');
-  root.style.setProperty('--border',blue?'#245b91':'#287b29');
-}
-function saveName(){
-  const name=document.getElementById('username').value.trim();
-  try{
-    localStorage.setItem('ogos_name',name);
-    document.getElementById('nameStatus').textContent=
-      name?'Display name saved: '+name:'Display name cleared.';
-  }catch(e){
-    document.getElementById('nameStatus').textContent='Could not save name.';
-  }
-}
-function resetSettings(){
-  document.documentElement.style.removeProperty('--green');
-  document.documentElement.style.removeProperty('--border');
+ try{
+  localStorage.setItem('ogos-note',document.getElementById('note').value);
+  document.getElementById('noteStatus').textContent='Saved on this browser!';
+ }catch(e){
+  document.getElementById('noteStatus').textContent='Could not save in this browser.';
+ }
 }
 try{
-  document.getElementById('username').value=localStorage.getItem('ogos_name')||'';
+ document.getElementById('note').value=localStorage.getItem('ogos-note')||'';
 }catch(e){}
+
+function calculate(){
+ const a=parseFloat(document.getElementById('num1').value);
+ const b=parseFloat(document.getElementById('num2').value);
+ const op=document.getElementById('op').value.trim();
+ let r;
+ if(!Number.isFinite(a)||!Number.isFinite(b)){
+  r='Enter both numbers'; 
+ }else if(op==='+')r=a+b;
+ else if(op==='-')r=a-b;
+ else if(op==='*')r=a*b;
+ else if(op==='/')r=b===0?'Cannot divide by zero':a/b;
+ else r='Use +, -, * or /';
+ document.getElementById('answer').textContent='Result: '+r;
+}
+function askAI(){
+ const q=document.getElementById('question').value.trim();
+ let reply='Keep learning, stay consistent, and break your goal into small steps.';
+ if(!q)reply='Please type a question first.';
+ else if(/hello|hi|namaste/i.test(q))reply='Hello, OG! Welcome to your dashboard.';
+ else if(/business|money|paise/i.test(q))reply='Learn a useful skill, understand customer needs, and track every expense.';
+ else if(/study|learn|abhyas/i.test(q))reply='Study for 25 minutes, take a short break, then revise what you learned.';
+ document.getElementById('aiAnswer').textContent=reply;
+}
+function mission(){
+ const tasks=[
+ 'Learn one new computer skill today.',
+ 'Write down one business idea.',
+ 'Practise maths for 15 minutes.',
+ 'Complete one important task without distraction.',
+ 'Review your goals and plan tomorrow.'
+ ];
+ const i=new Date().getDate()%tasks.length;
+ document.getElementById('missionText').textContent=tasks[i];
+}
 </script>
 </body>
 </html>
