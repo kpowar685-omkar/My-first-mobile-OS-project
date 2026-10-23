@@ -3,117 +3,358 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#031008">
 <title>OG OS</title>
+
 <style>
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #031008;
+  --card: #091b10;
+  --green: #39ff14;
+  --text: #ffffff;
+  --border: #39ff14;
+}
+
+body.light {
+  --bg: #f1fff2;
+  --card: #ffffff;
+  --green: #087d20;
+  --text: #102014;
+  --border: #54a765;
+}
 
 body {
   margin: 0;
-  background: #030704;
-  color: white;
+  background: var(--bg);
+  color: var(--text);
   font-family: Arial, sans-serif;
+  transition: 0.3s;
 }
 
-.home {
-  min-height: 100vh;
-  padding: 30px 22px;
-  background: radial-gradient(circle at top, #12351b, #030704 70%);
+header {
+  text-align: center;
+  padding: 30px 15px;
+  background: radial-gradient(circle, #124521, var(--bg));
 }
 
 .logo {
-  color: #39ff14;
-  font-size: 36px;
+  font-size: 48px;
   font-weight: bold;
-  text-align: center;
-  margin-top: 25px;
+  color: var(--green);
+  letter-spacing: 3px;
 }
 
 .tagline {
-  text-align: center;
-  color: #a6ff99;
-  font-size: 12px;
+  color: var(--green);
   letter-spacing: 2px;
+  font-size: 12px;
 }
 
-.clock {
+#clock {
   text-align: center;
-  font-size: 56px;
-  margin-top: 65px;
-  color: #39ff14;
+  font-size: 48px;
+  color: var(--green);
+  margin-top: 25px;
 }
 
-.date {
+#date {
   text-align: center;
-  color: #aaa;
+  margin: 8px 0 25px;
+  opacity: 0.7;
+}
+
+.container {
+  max-width: 600px;
+  margin: auto;
+  padding: 15px;
 }
 
 .card {
-  margin-top: 35px;
-  padding: 20px;
-  border: 1px solid #39ff14;
-  border-radius: 18px;
-  background: #08130a;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 22px;
+  margin-bottom: 18px;
+}
+
+h2 {
+  margin-top: 0;
+}
+
+p {
+  line-height: 1.6;
+  opacity: 0.8;
 }
 
 button {
   width: 100%;
   padding: 16px;
-  margin-top: 14px;
-  border-radius: 12px;
-  border: 1px solid #39ff14;
-  background: #0c1c0e;
-  color: #39ff14;
+  margin: 7px 0;
+  background: var(--card);
+  color: var(--green);
+  border: 1px solid var(--border);
+  border-radius: 14px;
   font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-.footer {
+button:active {
+  transform: scale(0.98);
+}
+
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+}
+
+.back {
+  width: auto;
+  padding: 10px 16px;
+}
+
+input {
+  width: 100%;
+  padding: 14px;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 16px;
+  margin: 8px 0;
+}
+
+.chat {
+  height: 280px;
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  padding: 12px;
+  border-radius: 12px;
+  margin: 15px 0;
+}
+
+.message {
+  padding: 10px;
+  border-radius: 10px;
+  margin: 8px 0;
+  overflow-wrap: anywhere;
+}
+
+.bot {
+  background: #14391d;
+  color: white;
+}
+
+.user {
+  background: var(--green);
+  color: #031008;
+  text-align: right;
+}
+
+footer {
   text-align: center;
-  margin-top: 45px;
-  color: #39ff14;
+  padding: 25px;
+  opacity: 0.6;
   font-size: 12px;
+}
+
+.small {
+  font-size: 12px;
+  opacity: 0.7;
 }
 </style>
 </head>
+
 <body>
-<div class="home">
+
+<header>
   <div class="logo">OG OS</div>
   <div class="tagline">BIGGER DREAMS. BIGGER MOVES.</div>
+</header>
 
-  <div class="clock" id="clock">00:00</div>
-  <div class="date" id="date"></div>
+<div id="clock">00:00</div>
+<div id="date"></div>
 
+<main class="container">
+
+<!-- HOME -->
+<section id="home" class="page active">
   <div class="card">
-    <h3>WELCOME TO OG OS</h3>
+    <h2>WELCOME TO OG OS</h2>
     <p>Your phone. Your vision. Your rules.</p>
+
+    <button onclick="openPage('apps')">
+      🚀 START OG OS
+    </button>
+
+    <button onclick="openPage('ai')">
+      🤖 OG AI ASSISTANT
+    </button>
+
+    <button onclick="openPage('settings')">
+      ⚙️ SETTINGS
+    </button>
+
+    <button onclick="openPage('about')">
+      ✨ ABOUT OG OS
+    </button>
   </div>
 
-  <button onclick="alert('Welcome to OG OS!')">
-    🚀 START OG OS
+  <div class="card">
+    <h2>🔥 YOUR MISSION</h2>
+    <p>Build your mindset. Learn new skills. Take action every day.</p>
+  </div>
+</section>
+
+<!-- APP LAUNCHER -->
+<section id="apps" class="page">
+  <button class="back" onclick="openPage('home')">
+    ← HOME
   </button>
 
-  <button onclick="alert('OG AI — Coming Soon!')">
-    🤖 OG AI
+  <div class="card">
+    <h2>🚀 OG OS LAUNCHER</h2>
+    <p>Choose your application.</p>
+
+    <button onclick="openPage('ai')">
+      🤖 Open OG AI
+    </button>
+
+    <button onclick="openPage('settings')">
+      ⚙️ Open Settings
+    </button>
+
+    <button onclick="openPage('about')">
+      ✨ About Project
+    </button>
+  </div>
+</section>
+
+<!-- AI ASSISTANT DEMO -->
+<section id="ai" class="page">
+  <button class="back" onclick="openPage('home')">
+    ← HOME
   </button>
 
-  <button onclick="alert('Settings — Coming Soon!')">
-    ⚙️ SETTINGS
+  <div class="card">
+    <h2>🤖 OG AI</h2>
+
+    <p class="small">
+      OG AI Demo — basic offline replies.
+      This is not connected to a live AI service.
+    </p>
+
+    <div id="chat" class="chat" aria-live="polite">
+      <div class="message bot">
+        Welcome to OG AI! 👋<br>
+        Ask me about mindset, business or study.
+      </div>
+    </div>
+
+    <form id="chatForm">
+      <input
+        id="question"
+        type="text"
+        maxlength="300"
+        placeholder="Type your message..."
+        required
+      >
+
+      <button type="submit">SEND MESSAGE ➤</button>
+    </form>
+
+    <button onclick="clearChat()">🗑️ CLEAR CHAT</button>
+  </div>
+</section>
+
+<!-- SETTINGS -->
+<section id="settings" class="page">
+  <button class="back" onclick="openPage('home')">
+    ← HOME
   </button>
 
-  <div class="footer">OG OS • VERSION 1.0</div>
-</div>
+  <div class="card">
+    <h2>⚙️ SETTINGS</h2>
+
+    <p>Change your OG OS appearance.</p>
+
+    <button onclick="toggleTheme()">
+      🌗 CHANGE DARK / LIGHT THEME
+    </button>
+
+    <button onclick="toggleClock()">
+      🕒 SHOW / HIDE CLOCK
+    </button>
+
+    <button onclick="openPage('home')">
+      💾 DONE
+    </button>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="page">
+  <button class="back" onclick="openPage('home')">
+    ← HOME
+  </button>
+
+  <div class="card">
+    <h2>✨ ABOUT OG OS</h2>
+
+    <p>
+      OG OS is a personal mobile-style web project.
+    </p>
+
+    <p><b>Version:</b> 1.1</p>
+    <p><b>Developer:</b> OG OS Creator</p>
+    <p><b>Motto:</b> Bigger Dreams. Bigger Moves.</p>
+
+    <p class="small">
+      Built with HTML, CSS and JavaScript.
+    </p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  OG OS • VERSION 1.1<br>
+  YOUR PHONE. YOUR VISION. YOUR RULES.
+</footer>
 
 <script>
+function openPage(id) {
+  document.querySelectorAll(".page").forEach(function(page) {
+    page.classList.remove("active");
+  });
+
+  document.getElementById(id).classList.add("active");
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+
+// Live clock
 function updateClock() {
   const now = new Date();
 
   document.getElementById("clock").textContent =
-    now.toLocaleTimeString("en-IN", {
+    now.toLocaleTimeString([], {
       hour: "2-digit",
       minute: "2-digit"
     });
 
   document.getElementById("date").textContent =
-    now.toLocaleDateString("en-IN", {
+    now.toLocaleDateString([], {
       weekday: "long",
       day: "numeric",
       month: "long",
@@ -123,6 +364,98 @@ function updateClock() {
 
 updateClock();
 setInterval(updateClock, 1000);
+
+// Theme
+function toggleTheme() {
+  document.body.classList.toggle("light");
+
+  localStorage.setItem(
+    "ogTheme",
+    document.body.classList.contains("light") ? "light" : "dark"
+  );
+}
+
+if (localStorage.getItem("ogTheme") === "light") {
+  document.body.classList.add("light");
+}
+
+// Clock visibility
+function toggleClock() {
+  const clock = document.getElementById("clock");
+  const date = document.getElementById("date");
+
+  const hide = clock.style.display !== "none";
+
+  clock.style.display = hide ? "none" : "block";
+  date.style.display = hide ? "none" : "block";
+
+  localStorage.setItem("ogClockHidden", hide ? "yes" : "no");
+}
+
+if (localStorage.getItem("ogClockHidden") === "yes") {
+  document.getElementById("clock").style.display = "none";
+  document.getElementById("date").style.display = "none";
+}
+
+// OG AI demo replies
+const chat = document.getElementById("chat");
+const form = document.getElementById("chatForm");
+const question = document.getElementById("question");
+
+function addMessage(text, type) {
+  const div = document.createElement("div");
+
+  div.className = "message " + type;
+  div.textContent = text;
+
+  chat.appendChild(div);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+form.addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const text = question.value.trim();
+
+  if (!text) return;
+
+  addMessage(text, "user");
+  question.value = "";
+
+  const q = text.toLowerCase();
+
+  let reply =
+    "I am currently a demo assistant. Try asking about mindset, business, study or habits.";
+
+  if (q.includes("hello") || q.includes("hi") ||
+      q.includes("namaskar") || q.includes("नमस्कार")) {
+    reply = "Hello! 👋 Welcome to OG AI. What would you like to learn today?";
+  } else if (q.includes("mindset") || q.includes("मन")) {
+    reply = "Build your mindset with 3 habits: learn daily, take action and review your progress every night.";
+  } else if (q.includes("business") || q.includes("व्यवसाय")) {
+    reply = "Start small: understand customer needs, test one product, track every expense and grow from real feedback.";
+  } else if (q.includes("study") || q.includes("अभ्यास")) {
+    reply = "Choose one topic, study for 25 minutes, take a short break and explain what you learned in your own words.";
+  } else if (q.includes("habit") || q.includes("सवय")) {
+    reply = "Pick one small habit and practise it every day. Consistency matters more than trying to change everything at once.";
+  } else if (q.includes("marathi") || q.includes("मराठी")) {
+    reply = "हो मित्रा! हा OG AI सध्या साधी demo उत्तरे देतो. खरा AI जोडण्यासाठी सुरक्षित server आणि AI API लागेल.";
+  }
+
+  setTimeout(function() {
+    addMessage(reply, "bot");
+  }, 400);
+});
+
+function clearChat() {
+  chat.replaceChildren();
+
+  addMessage(
+    "Chat cleared! 👋 Welcome back to OG AI Demo.",
+    "bot"
+  );
+}
 </script>
+
 </body>
 </html>
