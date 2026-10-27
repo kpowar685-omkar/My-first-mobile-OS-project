@@ -89,7 +89,38 @@ h2{font-size:21px;margin-top:0}
 <section class="page" id="home">
   <div class="logo">OG OS</div>
   <div class="tag">ULTIMATE • GAMING EDITION</div>
+<div class="logo">OG OS</div>
+<div class="card">
+  <input
+    id="appSearch"
+    type="search"
+    placeholder="🔍 Search apps..."
+    oninput="searchApps()"
+  >
+  <p id="searchMessage" class="small"></p>
+</div>
+function searchApps(){
+  const q = document.getElementById('appSearch').value.toLowerCase().trim();
 
+  const apps = [
+    {name:'notes', id:'notes'},
+    {name:'calculator', id:'calculator'},
+    {name:'music', id:'music'},
+    {name:'ai', id:'assistant'},
+    {name:'settings', id:'settings'},
+    {name:'about', id:'about'}
+  ];
+
+  document.querySelectorAll('.app').forEach(btn=>{
+    btn.style.display = btn.textContent.toLowerCase().includes(q)
+      ? ''
+      : 'none';
+  });
+
+  const found = apps.filter(app=>app.name.includes(q));
+  document.getElementById('searchMessage').textContent =
+    q ? (found.length ? 'Apps found: '+found.map(a=>a.name).join(', ') : 'No apps found') : '';
+}
   <div class="clock" id="clock">00:00</div>
   <div class="date" id="date"></div>
 
@@ -233,7 +264,22 @@ updateClock();
 setInterval(updateClock,1000);
 
 function openPage(id){
-  document.querySelectorAll('.page').forEach(p=>p.style.display='none');
+ function searchApps(){
+  const q = document.getElementById('appSearch').value.toLowerCase().trim();
+
+  document.querySelectorAll('.app').forEach(btn=>{
+    btn.style.display =
+      btn.textContent.toLowerCase().includes(q) ? '' : 'none';
+  });
+
+  const message = document.getElementById('searchMessage');
+  const visible = [...document.querySelectorAll('.app')]
+    .filter(btn => btn.style.display !== 'none').length;
+
+  message.textContent = q
+    ? (visible ? visible + ' app(s) found' : 'No apps found')
+    : '';
+} document.querySelectorAll('.page').forEach(p=>p.style.display='none');
   $(id).style.display='block';
   window.scrollTo(0,0);
 }
