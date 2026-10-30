@@ -8,66 +8,172 @@
 
 <style>
 :root{
-  --accent:#ff2638;
+  --red:#ff2638;
   --bg:#090909;
   --card:#171719;
   --border:#343438;
   --text:#ffffff;
   --muted:#aaaaaa;
 }
+
 *{box-sizing:border-box}
+
 body{
-  margin:0;background:var(--bg);color:var(--text);
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
   font-family:Arial,sans-serif;
 }
+
 button,input,textarea{font:inherit}
+
 button{
   cursor:pointer;
-  border:1px solid var(--accent);
-  background:#251013;color:var(--text);
-  padding:13px;border-radius:12px;
+  border:1px solid var(--red);
+  background:#251013;
+  color:white;
+  padding:13px;
+  border-radius:12px;
 }
+
 button:active{opacity:.7}
+
 input,textarea{
-  width:100%;padding:13px;margin:7px 0;
-  background:#090909;color:white;
-  border:1px solid var(--border);border-radius:10px;
+  width:100%;
+  padding:13px;
+  margin:7px 0;
+  background:#090909;
+  color:white;
+  border:1px solid var(--border);
+  border-radius:10px;
 }
-textarea{min-height:150px;resize:vertical}
-.small{font-size:13px;color:var(--muted);line-height:1.6}
+
+textarea{min-height:140px}
+
+.small{
+  font-size:13px;
+  color:var(--muted);
+  line-height:1.6;
+}
+
 .page{
-  display:none;min-height:100vh;padding:22px 17px 35px;
+  display:none;
+  min-height:100vh;
+  padding:22px 17px 35px;
   background:radial-gradient(circle at top,#351015,var(--bg) 65%);
 }
+
 #home{display:block}
-.logo{text-align:center;color:var(--accent);font-size:36px;font-weight:bold}
-.tag{text-align:center;color:#aaa;font-size:11px;letter-spacing:3px;margin-top:8px}
-.clock{text-align:center;color:var(--accent);font-size:48px;font-weight:bold;margin-top:45px}
-.date{text-align:center;color:#aaa;margin:8px 0 30px}
+
+.logo{
+  text-align:center;
+  color:var(--red);
+  font-size:38px;
+  font-weight:bold;
+}
+
+.tag{
+  text-align:center;
+  color:#aaa;
+  font-size:11px;
+  letter-spacing:3px;
+  margin-top:8px;
+}
+
+.clock{
+  text-align:center;
+  color:var(--red);
+  font-size:48px;
+  font-weight:bold;
+  margin-top:45px;
+}
+
+.date{
+  text-align:center;
+  color:#aaa;
+  margin:8px 0 30px;
+}
+
 .card{
-  background:var(--card);border:1px solid var(--border);
-  border-radius:19px;padding:18px;margin-bottom:14px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:19px;
+  padding:18px;
+  margin-bottom:14px;
 }
+
 h2{font-size:21px;margin-top:0}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
 .app{
-  min-height:95px;font-size:16px;color:var(--accent);
+  min-height:95px;
+  font-size:16px;
+  color:var(--red);
 }
-.app span{display:block;font-size:27px;margin-bottom:8px}
+
+.app span{
+  display:block;
+  font-size:27px;
+  margin-bottom:8px;
+}
+
 .wide{width:100%;margin:5px 0}
-.back{width:auto;margin-bottom:20px}
-.result{color:var(--accent);font-size:22px;overflow-wrap:anywhere}
-#lockScreen{
-  display:none;position:fixed;inset:0;z-index:9999;
-  background:radial-gradient(circle at top,#351015,#080808 75%);
-  align-items:center;justify-content:center;flex-direction:column;
-  padding:25px;text-align:center;
+
+.back{
+  width:auto;
+  margin-bottom:20px;
 }
-#lockScreen h1{color:var(--accent);font-size:42px}
-#lockScreen input{max-width:280px;text-align:center;letter-spacing:8px}
-#lockMessage{color:var(--accent);min-height:22px}
-#musicAudio{width:100%;margin-top:15px}
-#toast{color:var(--accent);font-size:13px;min-height:20px}
+
+.result{
+  color:var(--red);
+  font-size:22px;
+  overflow-wrap:anywhere;
+}
+
+#lockScreen{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background:radial-gradient(circle at top,#351015,#080808 75%);
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  padding:25px;
+  text-align:center;
+}
+
+#lockScreen h1{
+  color:var(--red);
+  font-size:42px;
+}
+
+#lockScreen input{
+  max-width:280px;
+  text-align:center;
+  letter-spacing:8px;
+}
+
+#lockMessage{
+  color:var(--red);
+  min-height:22px;
+}
+
+#musicAudio{
+  width:100%;
+  margin-top:15px;
+}
+
+#toast{
+  color:var(--red);
+  font-size:13px;
+  min-height:20px;
+}
 </style>
 </head>
 
@@ -77,314 +183,287 @@ h2{font-size:21px;margin-top:0}
 <section id="lockScreen">
   <h1>🔴 OG OS</h1>
   <p class="small">ULTIMATE GAMING EDITION</p>
-  <p>Enter your demo PIN</p>
-  <input id="pinInput" type="password" inputmode="numeric"
-         maxlength="4" placeholder="••••">
+  <p>Enter demo PIN: 1234</p>
+  <input id="pinInput" type="password"
+  inputmode="numeric" maxlength="4" placeholder="••••">
   <button class="wide" onclick="unlockOG()">UNLOCK</button>
   <p id="lockMessage"></p>
-  <p class="small">Demo only — not device security.</p>
 </section>
 
 <!-- HOME -->
-<section class="page" id="home">
+<section id="home" class="page">
+
   <div class="logo">OG OS</div>
   <div class="tag">ULTIMATE • GAMING EDITION</div>
-<div class="logo">OG OS</div>
-<div class="card">
-  <input
-    id="appSearch"
-    type="search"
-    placeholder="🔍 Search apps..."
-    oninput="searchApps()"
-  >
-  <p id="searchMessage" class="small"></p>
-</div>
-function searchApps(){
-  const q = document.getElementById('appSearch').value.toLowerCase().trim();
 
-  const apps = [
-    {name:'notes', id:'notes'},
-    {name:'calculator', id:'calculator'},
-    {name:'music', id:'music'},
-    {name:'ai', id:'assistant'},
-    {name:'settings', id:'settings'},
-    {name:'about', id:'about'}
-  ];
+  <div class="card" style="margin-top:30px">
+    <input id="appSearch" placeholder="🔍 Search apps..."
+    oninput="searchApps()">
+    <p id="searchMessage" class="small"></p>
+  </div>
 
-  document.querySelectorAll('.app').forEach(btn=>{
-    btn.style.display = btn.textContent.toLowerCase().includes(q)
-      ? ''
-      : 'none';
-  });
-
-  const found = apps.filter(app=>app.name.includes(q));
-  document.getElementById('searchMessage').textContent =
-    q ? (found.length ? 'Apps found: '+found.map(a=>a.name).join(', ') : 'No apps found') : '';
-}
-  <div class="clock" id="clock">00:00</div>
-  <div class="date" id="date"></div>
+  <div id="clock" class="clock">00:00</div>
+  <div id="date" class="date"></div>
 
   <div class="card">
     <h2>🔴 Welcome, OG</h2>
     <p class="small">Your world. Your rules. Your system.</p>
-    <p class="small">Stay focused. Build your future.</p>
   </div>
 
-  <div class="card">
-    <h2>⚡ All Apps</h2>
-    <div class="grid">
-      <button class="app" onclick="openPage('notes')">
-        <span>📝</span>Notes
-      </button>
-      <button class="app" onclick="openPage('calculator')">
-        <span>🧮</span>Calculator
-      </button>
-      <button class="app" onclick="openPage('music')">
-        <span>🎵</span>Music Player
-      </button>
-      <button class="app" onclick="openPage('assistant')">
-        <span>🤖</span>Demo AI
-      </button>
-      <button class="app" onclick="openPage('settings')">
-        <span>⚙️</span>Settings
-      </button>
-      <button class="app" onclick="openPage('about')">
-        <span>ℹ️</span>About
-      </button>
-    </div>
+  <div class="grid">
+    <button class="app" onclick="openPage('notes')">
+      <span>📝</span>Notes
+    </button>
+
+    <button class="app" onclick="openPage('calculator')">
+      <span>🧮</span>Calculator
+    </button>
+
+    <button class="app" onclick="openPage('music')">
+      <span>🎵</span>Music
+    </button>
+
+    <button class="app" onclick="openPage('assistant')">
+      <span>🤖</span>AI Assistant
+    </button>
+
+    <button class="app" onclick="openPage('settings')">
+      <span>⚙️</span>Settings
+    </button>
+
+    <button class="app" onclick="openPage('about')">
+      <span>📱</span>About
+    </button>
   </div>
 
-  <div class="card">
-    <h2>🎯 Daily Mission</h2>
-    <p id="mission" class="small">Ready to improve?</p>
-    <button class="wide" onclick="dailyMission()">Get Mission</button>
+  <div class="card" style="margin-top:18px">
+    <p class="small">OG OS • Built by OG</p>
   </div>
-
-  <p class="small" style="text-align:center">OG OS ULTIMATE V1 • Web Prototype</p>
 </section>
 
 <!-- NOTES -->
-<section class="page" id="notes">
-  <button class="back" onclick="goHome()">← Home</button>
-  <h2>📝 OG Notes</h2>
-  <textarea id="noteText" placeholder="Write your ideas..."></textarea>
-  <button class="wide" onclick="saveNotes()">💾 Save Notes</button>
-  <p id="noteStatus" class="small"></p>
-</section>
-
-<!-- CALCULATOR -->
-<section class="page" id="calculator">
-  <button class="back" onclick="goHome()">← Home</button>
-  <h2>🧮 Calculator</h2>
-  <input id="number1" type="number" placeholder="First number">
-  <input id="operator" placeholder="Operator: + - * /">
-  <input id="number2" type="number" placeholder="Second number">
-  <button class="wide" onclick="calculate()">Calculate</button>
-  <p id="calcResult" class="result"></p>
-</section>
-
-<!-- MUSIC -->
-<section class="page" id="music">
-  <button class="back" onclick="goHome()">← Home</button>
-  <h2>🎵 Music Player</h2>
+<section id="notes" class="page">
+  <button class="back" onclick="goHome()">← Back</button>
   <div class="card">
-    <p class="small">Choose an audio file stored on your phone.</p>
-    <input id="audioFile" type="file" accept="audio/*">
-    <audio id="musicAudio" controls></audio>
-    <p id="musicStatus" class="small">No song selected.</p>
+    <h2>📝 OG Notes</h2>
+    <textarea id="noteText" placeholder="Write your notes here..."></textarea>
+    <button class="wide" onclick="saveNotes()">SAVE NOTES</button>
+    <p id="noteStatus" class="small"></p>
   </div>
 </section>
 
-<!-- DEMO AI -->
-<section class="page" id="assistant">
-  <button class="back" onclick="goHome()">← Home</button>
-  <h2>🤖 OG Assistant</h2>
+<!-- CALCULATOR -->
+<section id="calculator" class="page">
+  <button class="back" onclick="goHome()">← Back</button>
   <div class="card">
-    <p class="small">
-      This is a basic demo assistant. It does not connect to a real AI service.
-    </p>
-    <input id="aiQuestion" placeholder="Ask something...">
-    <button class="wide" onclick="askAssistant()">Ask</button>
-    <p id="aiResponse" class="small">Your response appears here.</p>
+    <h2>🧮 Calculator</h2>
+    <input id="number1" type="number" placeholder="First number">
+    <input id="number2" type="number" placeholder="Second number">
+
+    <select id="operator" class="wide">
+      <option value="+">Addition (+)</option>
+      <option value="-">Subtraction (-)</option>
+      <option value="*">Multiplication (*)</option>
+      <option value="/">Division (/)</option>
+    </select>
+
+    <button class="wide" onclick="calculate()">CALCULATE</button>
+    <p id="calcResult" class="result">Result: 0</p>
+  </div>
+</section>
+
+<!-- MUSIC -->
+<section id="music" class="page">
+  <button class="back" onclick="goHome()">← Back</button>
+  <div class="card">
+    <h2>🎵 OG Music Player</h2>
+    <p class="small">Select an audio file from your phone.</p>
+    <input id="audioFile" type="file" accept="audio/*">
+    <audio id="musicAudio" controls></audio>
+    <p class="small">Music plays in this browser.</p>
+  </div>
+</section>
+
+<!-- AI ASSISTANT -->
+<section id="assistant" class="page">
+  <button class="back" onclick="goHome()">← Back</button>
+  <div class="card">
+    <h2>🤖 OG Assistant</h2>
+    <p class="small">Simple demo assistant. It does not connect to a real AI service.</p>
+    <input id="aiInput" placeholder="Type something...">
+    <button class="wide" onclick="askAI()">SEND</button>
+    <p id="aiAnswer" class="result"></p>
   </div>
 </section>
 
 <!-- SETTINGS -->
-<section class="page" id="settings">
-  <button class="back" onclick="goHome()">← Home</button>
-  <h2>⚙️ Settings</h2>
-
+<section id="settings" class="page">
+  <button class="back" onclick="goHome()">← Back</button>
   <div class="card">
-    <h3>🎨 Accent Theme</h3>
-    <button class="wide" onclick="setTheme('#ff2638')">🔴 Red</button>
-    <button class="wide" onclick="setTheme('#2589ff')">🔵 Blue</button>
-    <button class="wide" onclick="setTheme('#39ff14')">🟢 Green</button>
-  </div>
-
-  <div class="card">
-    <h3>🔐 Demo PIN</h3>
-    <p class="small">
-      Set a four-digit PIN for this demo screen. This is not secure authentication.
-    </p>
-    <input id="newPin" type="password" inputmode="numeric"
-           maxlength="4" placeholder="New 4-digit PIN">
-    <button class="wide" onclick="setDemoPin()">Set Demo PIN</button>
-    <button class="wide" onclick="showLock()">Show Lock Screen</button>
-    <p id="pinStatus" class="small"></p>
+    <h2>⚙️ Settings</h2>
+    <p>Theme: Black + Red Gaming</p>
+    <button class="wide" onclick="showLock()">SHOW DEMO LOCK</button>
+    <button class="wide" onclick="clearNotes()">CLEAR NOTES</button>
   </div>
 </section>
 
 <!-- ABOUT -->
-<section class="page" id="about">
-  <button class="back" onclick="goHome()">← Home</button>
-  <h2>ℹ️ About OG OS</h2>
+<section id="about" class="page">
+  <button class="back" onclick="goHome()">← Back</button>
   <div class="card">
-    <p>OG OS Ultimate V1</p>
+    <h2>📱 About OG OS</h2>
+    <p>OG OS Ultimate V2</p>
     <p class="small">Created as a personal web development project.</p>
     <p class="small">
-      This is not a real operating system. The demo PIN does not protect your
-      phone or confidential data. Notes are stored in browser storage.
+      This is not a real operating system.
+      The demo PIN does not protect your phone or confidential data.
+      Notes are stored in browser storage.
     </p>
   </div>
 </section>
 
 <script>
+
 const $ = id => document.getElementById(id);
 
+/* CLOCK */
 function updateClock(){
   const now = new Date();
-  $('clock').textContent = now.toLocaleTimeString([], {
-    hour:'2-digit', minute:'2-digit'
+
+  $('clock').textContent = now.toLocaleTimeString([],{
+    hour:'2-digit',
+    minute:'2-digit'
   });
-  $('date').textContent = now.toLocaleDateString([], {
-    weekday:'long', day:'numeric', month:'long', year:'numeric'
+
+  $('date').textContent = now.toLocaleDateString([],{
+    weekday:'long',
+    day:'numeric',
+    month:'long',
+    year:'numeric'
   });
 }
+
 updateClock();
 setInterval(updateClock,1000);
 
+/* PAGE NAVIGATION */
 function openPage(id){
- function searchApps(){
-  const q = document.getElementById('appSearch').value.toLowerCase().trim();
-
-  document.querySelectorAll('.app').forEach(btn=>{
-    btn.style.display =
-      btn.textContent.toLowerCase().includes(q) ? '' : 'none';
+  document.querySelectorAll('.page').forEach(p=>{
+    p.style.display='none';
   });
 
-  const message = document.getElementById('searchMessage');
-  const visible = [...document.querySelectorAll('.app')]
-    .filter(btn => btn.style.display !== 'none').length;
-
-  message.textContent = q
-    ? (visible ? visible + ' app(s) found' : 'No apps found')
-    : '';
-} document.querySelectorAll('.page').forEach(p=>p.style.display='none');
   $(id).style.display='block';
   window.scrollTo(0,0);
 }
-function goHome(){openPage('home')}
 
+function goHome(){
+  openPage('home');
+}
+
+/* APP SEARCH */
+function searchApps(){
+  const q = $('appSearch').value.toLowerCase().trim();
+
+  const apps = document.querySelectorAll('.app');
+
+  let found = 0;
+
+  apps.forEach(btn=>{
+    const match = btn.textContent.toLowerCase().includes(q);
+
+    btn.style.display = match ? '' : 'none';
+
+    if(match) found++;
+  });
+
+  $('searchMessage').textContent = q
+    ? (found ? found+' app(s) found' : 'No apps found')
+    : '';
+}
+
+/* NOTES */
 function saveNotes(){
   try{
     localStorage.setItem('ogos_notes',$('noteText').value);
     $('noteStatus').textContent='Notes saved in this browser.';
   }catch(e){
-    $('noteStatus').textContent='Unable to save notes in this browser.';
+    $('noteStatus').textContent='Unable to save notes.';
   }
 }
+
 try{
   $('noteText').value=localStorage.getItem('ogos_notes')||'';
 }catch(e){}
 
+function clearNotes(){
+  $('noteText').value='';
+  saveNotes();
+}
+
+/* CALCULATOR */
 function calculate(){
   const a=$('number1').valueAsNumber;
   const b=$('number2').valueAsNumber;
-  const op=$('operator').value.trim();
+  const op=$('operator').value;
+
   let result;
 
   if(!Number.isFinite(a)||!Number.isFinite(b)){
     result='Enter both numbers.';
-  }else if(op==='+') result=a+b;
+  }
+  else if(op==='+') result=a+b;
   else if(op==='-') result=a-b;
   else if(op==='*') result=a*b;
   else if(op==='/') result=b===0?'Cannot divide by zero.':a/b;
-  else result='Use +, -, * or /.';
 
   $('calcResult').textContent='Result: '+result;
 }
 
+/* MUSIC PLAYER */
 $('audioFile').addEventListener('change',function(){
   const file=this.files && this.files[0];
-  if(!file)return;
+
+  if(!file) return;
+
   const audio=$('musicAudio');
-  if(audio.dataset.url)URL.revokeObjectURL(audio.dataset.url);
+
+  if(audio.dataset.url){
+    URL.revokeObjectURL(audio.dataset.url);
+  }
+
   const url=URL.createObjectURL(file);
+
   audio.dataset.url=url;
   audio.src=url;
-  $('musicStatus').textContent='Selected: '+file.name;
-  audio.play().catch(()=>{});
+  audio.load();
 });
 
-function askAssistant(){
-  const q=$('aiQuestion').value.trim().toLowerCase();
-  let answer;
+/* DEMO AI */
+function askAI(){
+  const q=$('aiInput').value.toLowerCase().trim();
 
-  if(!q) answer='Please type a question.';
-  else if(/hello|hi|namaste|नमस्कार/.test(q))
-    answer='Hello, OG! Welcome to your system.';
-  else if(/business|money|paise|व्यवसाय|पैसे/.test(q))
-    answer='Learn a useful skill, understand customers, and track your expenses.';
-  else if(/study|learn|abhyas|अभ्यास/.test(q))
-    answer='Study for 25 minutes, take a short break, then revise.';
-  else if(/mindset|focus|laksh|लक्ष/.test(q))
-    answer='Choose one important task. Put distractions away and finish it.';
-  else
-    answer='This demo has limited replies. A real AI needs a securely configured AI service.';
-
-  $('aiResponse').textContent=answer;
-}
-
-function dailyMission(){
-  const tasks=[
-    'Learn one new computer skill today.',
-    'Write down one practical business idea.',
-    'Practise maths for 15 minutes.',
-    'Finish one important task without distractions.',
-    'Review your goals and plan tomorrow.'
-  ];
-  const day=Math.floor(Date.now()/86400000);
-  $('mission').textContent=tasks[day%tasks.length];
-}
-
-function setTheme(color){
-  document.documentElement.style.setProperty('--accent',color);
-  try{localStorage.setItem('ogos_theme',color)}catch(e){}
-}
-try{
-  const savedTheme=localStorage.getItem('ogos_theme');
-  if(savedTheme && /^#[0-9a-f]{6}$/i.test(savedTheme))setTheme(savedTheme);
-}catch(e){}
-
-/* Demo-only PIN. Do not use for confidential information. */
-function getDemoPin(){
-  try{return localStorage.getItem('ogos_demo_pin')||'1234'}
-  catch(e){return '1234'}
-}
-
-function setDemoPin(){
-  const pin=$('newPin').value.trim();
-  if(!/^\d{4}$/.test(pin)){
-    $('pinStatus').textContent='Enter exactly four digits.';
+  if(!q){
+    $('aiAnswer').textContent='Please type a message.';
     return;
   }
-  try{
-    localStorage.setItem('ogos_demo_pin',pin);
-    $('pinStatus').textContent='Demo PIN updated.';
-    $('newPin').value='';
-  }catch(e){
-    $('pinStatus').textContent='Browser storage is unavailable.';
+
+  if(q.includes('hello')||q.includes('hi')){
+    $('aiAnswer').textContent='Hello OG! Welcome to OG OS.';
   }
+  else if(q.includes('time')){
+    $('aiAnswer').textContent='Current time: '+new Date().toLocaleTimeString();
+  }
+  else if(q.includes('name')){
+    $('aiAnswer').textContent='I am OG Assistant.';
+  }
+  else{
+    $('aiAnswer').textContent='I am a demo assistant. Real AI connection is not enabled yet.';
+  }
+}
+
+/* DEMO LOCK */
+function getDemoPin(){
+  return '1234';
 }
 
 function showLock(){
@@ -403,7 +482,7 @@ function unlockOG(){
     $('pinInput').value='';
   }
 }
-</script>
 
+</script>
 </body>
 </html>
